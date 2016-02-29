@@ -187,3 +187,30 @@ cinder_storage:
       volume_group: cinder-volumes
       volume_driver: cinder.volume.drivers.lvm.LVMISCSIDriver
       volume_backend_name: LVM_iSCSI
+
+# Swift Config
+swift_config:
+  part_power: 8
+  weight: 100
+  min_part_hours: 1
+  repl_number: 3
+  region: 1
+  storage_network: 'br-storage'
+  replication_network: 'br-storage'
+  drives:
+    - name: sdc
+    - name: sdd
+    - name: sde
+    - name: sdf
+    - name: sdg
+  mount_point: /mnt
+  account: "service:glance"
+  container: glance
+  storage_policies:
+    - name: gold
+      index: 0
+      default: True
+    - name: silver
+      index: 1
+      repl_number: 3
+      depreciated: True

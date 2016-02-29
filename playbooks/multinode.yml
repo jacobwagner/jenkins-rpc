@@ -49,6 +49,12 @@
   roles:
     - volumes
 
+####################################################################
+# This is mutually exclusive with the configure-swift-disks task
+# This task uses LVS to mock drives, while the configure-swift-disks
+# uses hard disks. The user should pass the appropriate tag for their
+# lab setup.
+
 - hosts: swift
   user: root
   gather_facts: yes
@@ -64,6 +70,7 @@
     - configure-swift-disks
   roles:
     - configure-swift-disks
+####################################################################
 
 - hosts: infrastructure[0]
   user: root
